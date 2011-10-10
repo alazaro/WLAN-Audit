@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "AdDelegate.h"
 #import "NetworkListController.h"
 #import "MSNetworksManager.h"
 #import "NetworkDetailsController.h"
@@ -24,17 +23,6 @@
 @implementation NetworkListController
 
 @synthesize wlanNetworks,wlanBSSIDS;
-
-#pragma mark -
-#pragma mark Ad Setup method
-
-- (void)adSetup {
-    adView = [[GADBannerView alloc] initWithFrame:CGRectMake(0.0, 0.0, GAD_SIZE_320x50.width, GAD_SIZE_320x50.height)];
-    adView.adUnitID = ADMOB_API_KEY;
-    adView.rootViewController = self;
-    adView.delegate = [[AdDelegate alloc] initWithViewController:self];
-    [adView loadRequest:[GADRequest request]];
-}
 
 #pragma mark -
 #pragma mark Initialization
@@ -59,8 +47,6 @@
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[self scanForNetworks];
-	// Ad load
-    [self adSetup];
 }
 
 #pragma mark -
@@ -167,8 +153,7 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-    adView.delegate = nil;
-    [adView release];
+
 }
 
 

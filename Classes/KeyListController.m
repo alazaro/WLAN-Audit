@@ -17,7 +17,6 @@
  */
 
 #import "KeyListController.h"
-#import "AdDelegate.h"
 
 @implementation KeyListController
 
